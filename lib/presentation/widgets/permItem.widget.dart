@@ -18,43 +18,53 @@ class PermItem extends StatelessWidget {
           state.error = '';
         }
       }, builder: (context, state) {
-        return Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Expanded(
-                child: GestureDetector(
-                  onTap: () {
-                    context.read<PermissionBloc>().add(GetPermission(
-                        permName: prmItm?['name'],
-                        status: state.permissions[prmItm?['name']] ?? false));
-                  },
-                  child: Column(children: [
-                    Row(
+        return GestureDetector(
+          onTap: () {
+            context.read<PermissionBloc>().add(GetPermission(
+                permName: prmItm?['name'],
+                status: state.permissions[prmItm?['name']] ?? false));
+          },
+          child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                    child: Column(children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      prmItm?['icon'],
+                      Text(prmItm?['label'],
+                          style: const TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                  Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        prmItm?['icon'],
-                        Text(prmItm?['label'],
-                            style: const TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold)),
-                        Text(
-                            (state.permissions[prmItm?['name']] ?? false)
-                                ? 'Given'
-                                : 'Needed',
-                            style: const TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold)),
-                      ],
-                    ),
-                    Text(prmItm?['description'],
-                        style: const TextStyle(
-                          fontSize: 15,
-                        )),
+                        Expanded(
+                            flex: 7,
+                            child: Text(prmItm?['description'],
+                                style: const TextStyle(
+                                  fontSize: 15,
+                                ))),
+                        Expanded(
+                          flex: 3,
+                          child: Text(
+                              (state.permissions[prmItm?['name']] ?? false)
+                                  ? 'Approved'
+                                  : 'Missing',
+                              style: const TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold)),
+                        )
+                      ])
+                ])
                     // permissions.map((e) => null)
-                  ]),
-                ),
-              ),
-            ]);
+                    ),
+              ]),
+        );
       });
     });
   }

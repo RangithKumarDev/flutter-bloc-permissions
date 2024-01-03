@@ -10,19 +10,19 @@ class PermBody extends StatelessWidget {
       'name': 'camera',
       'label': 'Camera',
       'description': 'Need to make video calls within the app.',
-      'icon': const Icon(Icons.camera, size: 40)
+      'icon': const Icon(Icons.camera, size: 50)
     },
     '2': {
       'name': 'mic',
       'label': 'Microphone',
       'description': 'Need to talk with Talkia.',
-      'icon': const Icon(Icons.mic, size: 40)
+      'icon': const Icon(Icons.mic, size: 50)
     },
     '3': {
       'name': 'files',
       'label': 'FileSystem',
       'description': 'Need to select images from filesystem for profile image.',
-      'icon': const Icon(Icons.list, size: 40),
+      'icon': const Icon(Icons.list, size: 50),
     },
     '4': {
       'name': 'notification',
@@ -30,7 +30,7 @@ class PermBody extends StatelessWidget {
       'description': 'Required to receive notification from Talkia',
       'icon': const Icon(
         Icons.notifications_active,
-        size: 40,
+        size: 50,
       ),
     }
   };
