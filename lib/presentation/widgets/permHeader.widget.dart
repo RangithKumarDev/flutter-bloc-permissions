@@ -25,7 +25,7 @@ class PermHeader extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Takila',
+                    Text('Talkia',
                         style: TextStyle(
                             fontSize: 19, fontWeight: FontWeight.bold)),
                     Text(
@@ -36,7 +36,7 @@ class PermHeader extends StatelessWidget {
             ]),
         const SizedBox(height: 18),
         const Text(
-            'This app requires various permissions so that make calls with Takila without any worries.')
+            'This app requires various permissions so that make calls with Talkia without any worries.')
       ],
     );
   }

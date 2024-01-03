@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:permission_handler/permission_handler.dart';
 
 // Helper service for Permission handling;
@@ -6,7 +8,7 @@ class PermissionRequestService {
   static Future<Map<String, bool>> handlePermRequest(
       {required String permName}) async {
     Map<String, bool> state;
-    dynamic perm;
+    Permission perm;
     switch (permName) {
       case 'camera':
         perm = Permission.camera;
@@ -21,10 +23,13 @@ class PermissionRequestService {
         perm = Permission.storage;
         break;
       default:
-        perm = null;
+        perm = Permission.camera;
     }
     if (perm != null) {
+      log(perm.toString());
+      log(permName);
       PermissionStatus status = await perm.status;
+      log(status.toString());
       switch (status) {
         case PermissionStatus.granted:
           state = {'perm': true};
