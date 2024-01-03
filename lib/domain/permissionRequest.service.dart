@@ -36,8 +36,27 @@ class PermissionRequestService {
           break;
         case PermissionStatus.denied:
           // Need to get permission again;
-          await perm.request();
-          state = {'perm': true};
+          var newStat = await perm.request();
+          switch (newStat) {
+            case PermissionStatus.granted:
+              state = {'perm': true};
+              break;
+            case PermissionStatus.denied:
+              state = {'perm': false, 'denied': true};
+              break;
+            case PermissionStatus.restricted:
+              state = {'perm': true, 'partial': true};
+              break;
+            case PermissionStatus.permanentlyDenied:
+              state = {'perm': false, 'static': true};
+              break;
+            case PermissionStatus.limited:
+              state = {'perm': true, 'limited': true};
+              break;
+            case PermissionStatus.provisional:
+              state = {'perm': true, 'provisional': true};
+              break;
+          }
           break;
         case PermissionStatus.restricted:
           state = {'perm': true, 'partial': true};

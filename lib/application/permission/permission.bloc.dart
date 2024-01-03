@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_permissions/services/permissionRequest.service.dart';
+import 'package:flutter_bloc_permissions/domain/permissionRequest.service.dart';
 part 'permission.event.dart';
 part 'permission.state.dart';
 
@@ -26,6 +26,8 @@ class PermissionBloc extends Bloc<PermissionEvent, PermissionState> {
       if (status['perm'] == false) {
         if (status.keys.contains('none')) {
           err = 'Unexpected error occurred!';
+        } else if (status.keys.contains('denied')) {
+          err = 'Permission Denied! Retry later.';
         } else {
           err = 'Denied Permanently! Try enable from settings app.';
         }
