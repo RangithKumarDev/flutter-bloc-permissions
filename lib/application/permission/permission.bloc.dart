@@ -25,7 +25,7 @@ class PermissionBloc extends Bloc<PermissionEvent, PermissionState> {
       String err = '';
       if (status['perm'] == false) {
         if (status.keys.contains('none')) {
-          err = 'Unexpected error occured!';
+          err = 'Unexpected error occurred!';
         } else {
           err = 'Denied Permanently! Try enable from settings app.';
         }
@@ -34,7 +34,7 @@ class PermissionBloc extends Bloc<PermissionEvent, PermissionState> {
         if (status.keys.contains('limited')) {
           err = 'Given Limited access!';
         } else if (status.keys.contains('provisional')) {
-          err = 'Given Provisional access olny!';
+          err = 'Given Provisional access only!';
         } else if (status.keys.contains('partial')) {
           err = 'Given Partial access! Parental controls.';
         } else {
