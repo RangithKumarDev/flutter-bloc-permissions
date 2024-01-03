@@ -56,8 +56,13 @@ class PermItem extends StatelessWidget {
                               (state.permissions[prmItm?['name']] ?? false)
                                   ? 'Approved'
                                   : 'Missing',
-                              style: const TextStyle(
-                                  fontSize: 18, fontWeight: FontWeight.bold)),
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: (state.permissions[prmItm?['name']] ??
+                                          false)
+                                      ? Colors.green
+                                      : Colors.grey)),
                         )
                       ])
                 ])
