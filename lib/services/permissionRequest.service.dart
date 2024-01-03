@@ -1,6 +1,8 @@
 import 'package:permission_handler/permission_handler.dart';
 
+// Helper service for Permission handling;
 class PermissionRequestService {
+  // Static method to handle Permission request;
   static Future<Map<String, bool>> handlePermRequest(
       {required String permName}) async {
     Map<String, bool> state;
@@ -28,6 +30,7 @@ class PermissionRequestService {
           state = {'perm': true};
           break;
         case PermissionStatus.denied:
+          // Need to get permission again;
           await perm.request();
           state = {'perm': true};
           break;
@@ -38,10 +41,10 @@ class PermissionRequestService {
           state = {'perm': false, 'static': true};
           break;
         case PermissionStatus.limited:
-          state = {'perm': false, 'limited': true};
+          state = {'perm': true, 'limited': true};
           break;
         case PermissionStatus.provisional:
-          state = {'perm': false, 'provisional': true};
+          state = {'perm': true, 'provisional': true};
           break;
         default:
           state = {'perm': false, 'none': false};
